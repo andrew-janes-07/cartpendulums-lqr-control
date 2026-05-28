@@ -79,20 +79,13 @@ equations of motion follow from the Euler–Lagrange equations and take the
 standard manipulator form:
 
 $$
-M(q)\ddot{q} + C(q, \dot{q})\dot{q} + G(q) = B u
+M(q)\mathbf{\ddot{q}} + \mathbf{h}(q, \dot{q}) = B \mathbf{u}
 $$
 
-where $M$ is the configuration-dependent inertia matrix, $C$ contains the
-Coriolis and centrifugal terms, $G$ is the gravity vector, and $B = [1, 0, \dots, 0]^\top$
+where $M$ is the configuration-dependent inertia matrix, $\mathbf{h}$ contains the velocity cross terms and the gravitational terms, and $B = [1, 0, \dots, 0]^\top$
 since the cart is the only actuated coordinate.
 
-Linearizing about $q^* = (0, \pi, \dots, \pi)$, $\dot{q}^* = 0$ yields
-
-$$
-\dot{z} = A z + B u, \qquad z = \begin{bmatrix} q - q^* \\ \dot{q} \end{bmatrix}
-$$
-
-with $A$ obtained from the Jacobians of $M^{-1}(G - C\dot{q})$ at the equilibrium.
+The linearization is done by a finite difference of the state around a unstable equilibrium. The initial plan was to derive the 
 
 The LQR cost is
 
@@ -101,13 +94,7 @@ J = \int_0^\infty \left( z^\top Q z + u^\top R u \right) dt
 $$
 
 with [VERIFY: $Q = \mathrm{diag}(\ldots)$, $R = \ldots$]. Solving the algebraic
-Riccati equation gives the optimal gain $K$, and the deadband control law is
-
-$$
-u = \begin{cases} -K z & \text{if } \|z\|_W > \epsilon \\ 0 & \text{otherwise} \end{cases}
-$$
-
-where $\|\cdot\|_W$ is a weighted norm matching the LQR cost weights.
+Riccati equation gives the optimal gain $K$ which would give $u = -Kx$.
 
 ## Repository layout
 
