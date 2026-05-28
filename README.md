@@ -17,7 +17,7 @@ initial perturbations.
 
 **What's interesting here:**
 
-- The Coriolis matrix for the *n*-link case is non-trivial to get right —
+- The Coriolis terms for the *n*-link case is non-trivial to get right —
   energy conservation in the uncontrolled simulation is the test that catches
   almost every implementation bug.
 - LQR alone produces high-frequency chatter near the equilibrium due to small
